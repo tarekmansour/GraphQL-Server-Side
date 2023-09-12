@@ -1,9 +1,10 @@
-﻿using GraphQLSample.API.Entities.Context;
+﻿using GraphQLSample.API.Entities;
+using GraphQLSample.API.Entities.Context;
 using GraphQLSample.API.Interface;
 
 namespace GraphQLSample.API.Repository;
 
-public class SellerRepository: ISellerRepository
+public class SellerRepository : ISellerRepository
 {
     private readonly ApplicationContext _context;
 
@@ -11,4 +12,7 @@ public class SellerRepository: ISellerRepository
     {
         _context = context;
     }
+
+    public IEnumerable<Seller> GetAll()
+        => _context.Sellers.ToList();
 }
