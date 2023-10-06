@@ -3,9 +3,9 @@ using GraphQLSample.API.Interface;
 
 namespace GraphQLSample.API.GraphQL;
 
-public class QueryGraphType : ObjectGraphType
+public class AppQuery : ObjectGraphType
 {
-    public QueryGraphType(ISellerRepository sellerRepository)
+    public AppQuery()
     {
         Field<ListGraphType<SellerType>>(name: "sellers")
             .Description("Get the list of selelrs")

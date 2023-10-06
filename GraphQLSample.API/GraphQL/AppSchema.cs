@@ -6,5 +6,5 @@ public class AppSchema: Schema
 {
     public AppSchema(IServiceProvider provider)
         : base(provider)
-        => Query = provider.GetRequiredService<QueryGraphType>();
+        => Query = provider.GetRequiredService<AppQuery>();
 }
