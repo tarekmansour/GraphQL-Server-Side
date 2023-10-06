@@ -1,18 +1,27 @@
+using GraphQL.Server;
+using GraphQL.Types;
 using GraphQLSample.API.Entities.Context;
+using GraphQLSample.API.GraphQL;
 using GraphQLSample.API.Interface;
 using GraphQLSample.API.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
 // Add services to the container
-builder.Services.AddDbContext<ApplicationContext>(opt =>
+services.AddDbContext<ApplicationContext>(opt =>
         opt.UseSqlServer(builder.Configuration.GetConnectionString("main")));
 
-builder.Services.AddScoped<ISellerRepository, SellerRepository>();
-builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+services.AddScoped<ISellerRepository, SellerRepository>();
+services.AddScoped<IVehicleRepository, VehicleRepository>();
 
-builder.Services.AddControllers();
+//GraphQL
+services.AddScoped<AppSchema>();
+
+services.AddGraphQL(builder => builder );
+
+services.AddControllers();
 
 var app = builder.Build();
 

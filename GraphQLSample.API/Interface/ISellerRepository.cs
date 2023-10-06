@@ -4,5 +4,5 @@ namespace GraphQLSample.API.Interface;
 
 public interface ISellerRepository
 {
-    IEnumerable<Seller> GetAll();
+    Task<IEnumerable<Seller>> GetSellers();
 }

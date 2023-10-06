@@ -1,6 +1,7 @@
 ﻿using GraphQLSample.API.Entities;
 using GraphQLSample.API.Entities.Context;
 using GraphQLSample.API.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace GraphQLSample.API.Repository;
 
@@ -13,6 +14,8 @@ public class SellerRepository : ISellerRepository
         _context = context;
     }
 
-    public IEnumerable<Seller> GetAll()
-        => _context.Sellers.ToList();
+    public async Task<IEnumerable<Seller>> GetSellers()
+        => await _context.Sellers
+            .ToListAsync()
+            .ConfigureAwait(false);
 }
