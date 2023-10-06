@@ -7,8 +7,12 @@ public class AppQuery : ObjectGraphType
 {
     public AppQuery()
     {
+        // configure type
+        Name = "Query";
+        Description = "Queries on my app<Domain>";
+
         Field<ListGraphType<SellerType>>(name: "sellers")
-            .Description("Get the list of selelrs")
+            .Description("Get the list of sellers")
             .ResolveAsync(async context =>
             {
                 var repository = context.RequestServices!.GetRequiredService<ISellerRepository>();
